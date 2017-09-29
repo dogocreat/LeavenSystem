@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block leftMenu %} {% include 'leftMenu.html' %} {% endblock%}
+{% block content %} 
+    {% if page == 'home' %}
+        {% include 'content.html' %}
+    {% elif page == 'leavenList' %}
+        {% include 'leavenList.html' %}
+    {% elif page == 'LeavenForm' %}
+        {% include 'LeavenForm.html' %}
+    {% endif %} 
+{% endblock %}
+

@@ -1,0 +1,30 @@
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+    <h2>Section title</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Dep</th>
+                    <th>LeaveDate</th>
+                    <th>TimeRange</th>
+                    <th>Ischeck</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in dataList %}
+                <tr>
+                    <td>{{ data.title }}</td>
+                    <td>{{ data.author }}</td>
+                    <td>{{ data.dep }}</td>
+                    <td>{{ data.leaveDate }}</td>
+                    <td>{{ data.timeRange }}</td>
+                    <td>{{ data.is_check }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</main>
