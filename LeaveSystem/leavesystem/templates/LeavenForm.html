@@ -1,4 +1,6 @@
 <form action="/submitLeavenForm/" method="POST">
+    <input type="hidden" id="post_id" name="post_id" value="{{ id }}">
+    <input type="hidden" id="status" name="status" value="{{ action_status }}">
     {% csrf_token %}
     <div class="form-group">
         <label for="SelectAuthor">Author</label>
@@ -9,25 +11,25 @@
     <div class="form-group">
         <label for="SelectDep">Dep</label>
         <select class="form-control" id="SelectDep" name="SelectDep">
-            <option value="{{ depOptions.0.0 }}">{{ depOptions.0.1 }}</option>
-            <option value="{{ depOptions.1.0 }}">{{ depOptions.1.1 }}</option>
-            <option value="{{ depOptions.2.0 }}">{{ depOptions.2.1 }}</option>
+            <option value="{{ depOptions.0.0 }}" {% if action_status == "edit" and dataPost.dep == depOptions.0.0 %}selected{% endif %}>{{ depOptions.0.1 }}</option>
+            <option value="{{ depOptions.1.0 }}" {% if action_status == "edit" and dataPost.dep == depOptions.1.0 %}selected{% endif %}>{{ depOptions.1.1 }}</option>
+            <option value="{{ depOptions.2.0 }}" {% if action_status == "edit" and dataPost.dep == depOptions.2.0 %}selected{% endif %}>{{ depOptions.2.1 }}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="LeavenDate">LeavenDate</label>
-        <input class="form-control" type="date" value="{{ now }}" id="LeavenDate" name="LeavenDate">
+        <input class="form-control" type="date" value="{% if action_status == "edit" %}{{ dataPost.leaveDate }}{% else %}{{ now }}{% endif %}" id="LeavenDate" name="LeavenDate">
     </div>
     <div class="form-group">
         <label for="TimeRange">TimeRange</label>
         <select class="form-control" id="TimeRange" name="TimeRange">
-                <option value="{{ timeOptions.0.0 }}">{{ timeOptions.0.1 }}</option>
-                <option value="{{ timeOptions.1.0 }}">{{ timeOptions.1.1 }}</option>
+                <option value="{{ timeOptions.0.0 }}" {% if action_status == "edit" and dataPost.timeRange == timeOptions.0.0 %}selected{% endif %}>{{ timeOptions.0.1 }}</option>
+                <option value="{{ timeOptions.1.0 }}" {% if action_status == "edit" and dataPost.timeRange == timeOptions.1.0 %}selected{% endif %}>{{ timeOptions.1.1 }}</option>
             </select>
     </div>
     <div class="form-group">
         <label for="comment">Comment:</label>
-        <textarea class="form-control" rows="5" cols="100" id="comment" name="comment"></textarea>
+        <textarea class="form-control" rows="5" cols="100" id="comment" name="comment">{% if action_status == "edit" %}{{ dataPost.comment }}{% endif %}</textarea>
     </div>
     <button type="submit" class="btn btn-primary btn-block">送出</button>
 </form>

@@ -4,6 +4,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Func</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Dep</th>
@@ -15,6 +16,10 @@
             <tbody>
                 {% for data in dataList %}
                 <tr>
+                    <td>
+                        <a href="/editLeavenForm/{{ data.pk }}">E</a>
+                        <a href="/delLeavenForm/{{ data.pk }}">D</a>
+                    </td>
                     <td>{{ data.title }}</td>
                     <td>{{ data.author }}</td>
                     <td>{{ data.dep }}</td>
